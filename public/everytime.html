@@ -1,5 +1,9 @@
 <!DOCTYPE HTML>
-
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html>
 
 <head>
@@ -10,12 +14,6 @@
 </head>
 
 <body>
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
 
     <!-- Header -->
     <header id="header">
@@ -41,10 +39,11 @@
     <!-- Banner -->
     <section id="banner">
         <div class="content">
-            <h1 style="color: #f6755e">로그인하여 시작하십시오</h1>
+            <h1 style="color: dimgray">에브리타임코드를 입력해주세요</h1>
 
             <nav class="right" style="color:#FFFFFF">
-                <a href="login.html" class="button alt" style="background-color: #FFFFFF;">Log in</a>
+                <textarea style="width:500px; background-color: #FFFFFF ; margin-left: auto ; margin-right: auto; color:black"></textarea>
+                <a href="" class="button alt" style="background-color: #FFFFFF;">연동</a>
             </nav>
         </div>
     </section>
@@ -99,30 +98,29 @@
         </div>
     </footer>
 
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
 
     <script>
-        // Your web app's Firebase configuration
+        // TODO: Replace the following with your app's Firebase project configuration
         var firebaseConfig = {
-            apiKey: "AIzaSyArM8nKVJkjmDU11zsyVXqKhD8DCud6JO4",
-            authDomain: "smartstudyweb.firebaseapp.com",
-            databaseURL: "https://smartstudyweb.firebaseio.com",
-            projectId: "smartstudyweb",
-            storageBucket: "smartstudyweb.appspot.com",
-            messagingSenderId: "42682850378",
-            appId: "1:42682850378:web:339783d8b17c24a1c81ab3",
-            measurementId: "G-1JCYM557CR"
+            // ...
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        console.log(user)
     </script>
-
 </body>
 
 </html>

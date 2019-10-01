@@ -12,18 +12,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main2.css" />
 
-
-    <link href='packages/core/main.css' rel='stylesheet' />
-    <link href='packages/daygrid/main.css' rel='stylesheet' />
-
-    <script src='packages/core/main.js'></script>
-    <script src='packages/daygrid/main.js'></script>
+    <link href='./packages/core/main.css' rel='stylesheet' />
+    <link href='./packages/daygrid/main.css' rel='stylesheet' />
+    <link href='./packages/timegrid/main.css' rel='stylesheet' />
+    <link href='./packages/list/main.css' rel='stylesheet' />
+    <script src='./packages/core/main.js'></script>
+    <script src='./packages/interaction/main.js'></script>
+    <script src='./packages/daygrid/main.js'></script>
+    <script src='./packages/timegrid/main.js'></script>
+    <script src='./packages/list/main.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid']
+                plugins: ['dayGrid', 'timeGrid', 'list', 'interaction'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                }
             });
 
             calendar.render();
@@ -119,7 +127,28 @@
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
 
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyArM8nKVJkjmDU11zsyVXqKhD8DCud6JO4",
+            authDomain: "smartstudyweb.firebaseapp.com",
+            databaseURL: "https://smartstudyweb.firebaseio.com",
+            projectId: "smartstudyweb",
+            storageBucket: "smartstudyweb.appspot.com",
+            messagingSenderId: "42682850378",
+            appId: "1:42682850378:web:339783d8b17c24a1c81ab3",
+            measurementId: "G-1JCYM557CR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </body>
 
 </html>

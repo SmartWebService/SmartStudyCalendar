@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- jQuery  -->
+
+
+</head>
+
+<body>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyArM8nKVJkjmDU11zsyVXqKhD8DCud6JO4",
+            authDomain: "smartstudyweb.firebaseapp.com",
+            databaseURL: "https://smartstudyweb.firebaseio.com",
+            projectId: "smartstudyweb",
+            storageBucket: "smartstudyweb.appspot.com",
+            messagingSenderId: "42682850378",
+            appId: "1:42682850378:web:065cca308b440784c81ab3",
+            measurementId: "G-WZFBPQEPHW"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        // 인증하기
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+
+            window.location.replace("./index2.html");
+
+            console.log(user) // 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+                // ...
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    </script>
+
+</body>
+
+</html>
