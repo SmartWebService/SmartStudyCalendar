@@ -42,11 +42,11 @@
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-
+            console.log(user)
             window.location.replace("./index2.html");
 
-            console.log(user) // 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
-                // ...
+            // 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+            // ...
         }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
