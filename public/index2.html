@@ -152,11 +152,11 @@
         firebase.initializeApp(firebaseConfig);
 
         var database = firebase.database();
-        var name;
+
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 var user = firebase.auth().currentUser;
-                name = user.uid;
+                var name = user.uid;
             } else {
                 // No user is signed in.
             }
