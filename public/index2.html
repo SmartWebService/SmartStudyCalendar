@@ -156,7 +156,7 @@
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 var user = firebase.auth().currentUser;
-                var name = user.displayName;
+                var name = user.uid;
                 database.ref('db/' + name).set({
                     defaultDate: '2019-08-12',
                     navLinks: true, // can click day/week names to navigate views
