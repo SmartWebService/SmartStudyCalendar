@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>나의 캘린더</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Mansalva|Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <link href="{% static 'packages/core/main.css' %}" rel='stylesheet' />
+    <link href="{% static 'packages/daygrid/main.css' %}" rel='stylesheet' />
+    <link href="{% static 'packages/timegrid/main.css' %}" rel='stylesheet' />
+    <link href="{% static 'packages/list/main.css' %}" rel='stylesheet' />
+    <script src="{% static 'packages/core/main.js' %}"></script>
+    <script src="{% static 'packages/core/locales-all.js' %}"></script>
+    <script src="{% static 'packages/interaction/main.js' %}"></script>
+    <script src="{% static 'packages/daygrid/main.js' %}"></script>
+    <script src="{% static 'packages/timegrid/main.js' %}"></script>
+    <script src="{% static 'packages/list/main.js' %}"></script>
+
+    <script>
+
+        var initialLocaleCode = 'ko';
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['interaction', 'dayGrid', 'timeGrid'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                defaultDate: '2019-08-12',
+                locale: initialLocaleCode,
+                navLinks: true, // can click day/week names to navigate views
+                selectable: true,
+                selectMirror: true,
+                select: function (arg) {
+                    var title = prompt('Event Title:');
+                    if (title) {
+                        calendar.addEvent({
+                            title: title,
+                            start: arg.start,
+                            end: arg.end,
+                            allDay: arg.allDay
+                        })
+                    }
+                    calendar.unselect()
+                },
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2019-08-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2019-08-07',
+                        end: '2019-08-10'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-09T16:00:00'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2019-08-11',
+                        end: '2019-08-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2019-08-12T10:30:00',
+                        end: '2019-08-12T12:30:00'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2019-08-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2019-08-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2019-08-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2019-08-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2019-08-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2019-08-28'
+                    }
+                ]
+            });
+
+            calendar.render();
+
+
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('side');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['list'],
+
+                // header: {
+                //   left: 'prev,next today',
+                //   center: 'title',
+                //   right: 'listDay,listWeek,dayGridMonth'
+                // },
+
+                // customize the button names,
+                // otherwise they'd all just say "list"
+                // views: {
+                //   listDay: { buttonText: 'list day' },
+                //   listWeek: { buttonText: 'list week' }
+                // },
+
+                defaultView: 'listWeek',
+                defaultDate: '2019-08-12',
+                locale: initialLocaleCode,
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2019-08-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2019-08-07',
+                        end: '2019-08-10'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-09T16:00:00'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2019-08-11',
+                        end: '2019-08-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2019-08-12T10:30:00',
+                        end: '2019-08-12T12:30:00'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2019-08-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2019-08-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2019-08-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2019-08-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2019-08-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2019-08-28'
+                    }
+                ]
+            });
+
+            calendar.render();
+        });
+
+    </script>
+
+    <style>
+        /* body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        } */
+
+        body {
+            font-family: 'Mansalva', cursive;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        nav {
+            font-family: 'Mansalva', cursive;
+        }
+
+        .navbar-brand {
+            font-size: 25pt;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Smart Study Calendar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="connect-everytime">에브리타임 시간표 연동</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div id='calendar' class="col-7"></div>
+            <div id='side' class="col-5"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>로그인</title>
+</head>
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+<body>
+    {% if user.is_authenticated %}
+    <a href="accounts/logout">로그아웃</a>
+    <br>
+    {{user.username}}님 환영합니다.
+    {% else %}
+    <a href="{% provider_login_url 'google'%}">구글 로그인</a>
+    {% endif %}
+</body>
+
+</html>
