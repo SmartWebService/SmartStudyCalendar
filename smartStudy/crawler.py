@@ -40,9 +40,20 @@ def timetable2json(timetable):
     return json.dumps(json_data)
 
 
-def run(url):
+def lecture_list(_list):
+    _result = []
+
+    for i in _list:
+        _result.append(i.name)
+    
+    return _result
+
+def run(user_url):
     _table = []
-    user_url = 'https://everytime.kr/@XZsFeIyLZWJCGXQozIPg'
+    # user_url = 'https://everytime.kr/@XZsFeIyLZWJCGXQozIPg'
+    if user_url.split('@')[0] != 'https://everytime.kr/':
+        return None
+        # return ["올바르지 않은 URL입니다.", "요청하신 URL: " + user_url]
     user_code = user_url.split("@")[1]
     print("시간표 고유번호:", user_code)
 
@@ -74,7 +85,8 @@ def run(url):
         _table.append(i_sub)
         print(i_sub)
 
-    print(timetable2json(_table))
+    # print(timetable2json(_table))
+    return _table
 
 
 if __name__ == '__main__':
