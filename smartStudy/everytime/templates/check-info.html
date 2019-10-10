@@ -174,11 +174,16 @@
 
         <div class="form">
             <h2>조회된 시간표 정보</h2>
+            {% for i in info_list %}
+            <h5>{{ i }}</h5>
+            <!-- <br> -->
+            {% endfor%}
+            <h5>조회된 시간표입니다. 맞으시면 확인해주세요.</h5>
             <form class="url-form" action="/connect-everytime/post" method="POST">
                 {%csrf_token%}
                 <!-- 보안이슈로 입력 -->
                 {{form.as_p}}
-                <input type="url" name="user-code" id="user-code" placeholder="사용자 시간표 URL" minlength="23" required />
+                <!-- <input type="url" name="user-code" id="user-code" placeholder="사용자 시간표 URL" minlength="23" required /> -->
                 <button>확인</button>
             </form>
             <br>

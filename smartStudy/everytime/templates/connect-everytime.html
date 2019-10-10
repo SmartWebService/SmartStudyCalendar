@@ -172,7 +172,7 @@
 
     <div class="login-page">
         <div class="form">
-            <form class="url-form" action="/connect-everytime/post" method="POST">
+            <form class="url-form" action="/connect-everytime/check" method="POST">
                 {%csrf_token%}
                 <!-- 보안이슈로 입력 -->
                 {{form.as_p}}

@@ -23,7 +23,7 @@ urlpatterns = [
     path('', calendarapp.views.my),
     path('admin/', admin.site.urls),
     path('connect-everytime', everytime.views.connect_everytime),
-    path('connect-everytime/post', everytime.views.post),
+    path('connect-everytime/check', everytime.views.post),
     path('connect-everytime/how-to', everytime.views.howto),
     path('login', accounts.views.login, name='login'),
     path('accounts/', include('allauth.urls')),
