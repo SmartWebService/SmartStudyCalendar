@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>Intensify by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main2.css" />
+
+    <link href='./packages/core/main.css' rel='stylesheet' />
+    <link href='./packages/daygrid/main.css' rel='stylesheet' />
+    <link href='./packages/timegrid/main.css' rel='stylesheet' />
+    <link href='./packages/list/main.css' rel='stylesheet' />
+    <script src='./packages/core/main.js'></script>
+    <script src='./packages/interaction/main.js'></script>
+    <script src='./packages/daygrid/main.js'></script>
+    <script src='./packages/timegrid/main.js'></script>
+    <script src='./packages/list/main.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid', 'timeGrid', 'list', 'interaction'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="left">
+            <a href="#menu"><span>Menu</span></a>
+        </nav>
+        <a href="index.html" class="logo">Smart Study Web Calendar</a>
+
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generic.html">Generic</a></li>
+            <li><a href="elements.html">Elements</a></li>
+        </ul>
+        <ul class="actions vertical">
+            <li><a href="#" class="button fit">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner -->
+
+
+    <div id='calendar'></div>
+
+
+
+    <!-- One -->
+    <section id="one" class="wrapper">
+        <div class="inner flex flex-3">
+            <div class="flex-item left">
+                <div>
+                    <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <img src="images/everytime.png" style="height:230px; width:250px;"></h3>
+
+                </div>
+                <div>
+                    <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <img src="images/facebook.jpg" style="height:250px; width:250px"></h3>
+
+                </div>
+            </div>
+            <div class="flex-item image fit round">
+                <img src="images/pic011.jpg" alt="" />
+            </div>
+            <div class="flex-item right">
+                <div>
+                    <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="images/notepad.png" style="height:180px; width:180px"></h3>
+
+                </div>
+                <div>
+                    <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="images/record.png" style="height:180px; width:180px"></h3>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two -->
+
+
+    <!-- Three -->
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <h2>Team5 SSW Calender</h2>
+            <ul class="actions">
+                <li><span class="icon fa-phone"></span> <a href="#">(000) 000-0000</a></li>
+                <li><span class="icon fa-envelope"></span> <a href="#">information@untitled.tld</a></li>
+                <li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+            </ul>
+        </div>
+        <div class="copyright">
+            &copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyArM8nKVJkjmDU11zsyVXqKhD8DCud6JO4",
+            authDomain: "smartstudyweb.firebaseapp.com",
+            databaseURL: "https://smartstudyweb.firebaseio.com",
+            projectId: "smartstudyweb",
+            storageBucket: "smartstudyweb.appspot.com",
+            messagingSenderId: "42682850378",
+            appId: "1:42682850378:web:339783d8b17c24a1c81ab3",
+            measurementId: "G-1JCYM557CR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                var user = firebase.auth().currentUser;
+                var name = user.uid;
+                database.ref('db/' + name).set({
+                    defaultDate: '2019-08-12',
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: true,
+                    eventLimit: true, // allow "more" link when too many events
+                    events: [{
+                        title: 'All Day Event',
+                        start: '2019-08-01',
+                    }, {
+                        title: 'Long Event',
+                        start: '2019-08-07',
+                        end: '2019-08-10'
+                    }, {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-09T16:00:00'
+                    }, {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-16T16:00:00'
+                    }, {
+                        title: 'Conference',
+                        start: '2019-08-11',
+                        end: '2019-08-13'
+                    }, {
+                        title: 'Meeting',
+                        start: '2019-08-12T10:30:00',
+                        end: '2019-08-12T12:30:00'
+                    }, {
+                        title: 'Lunch',
+                        start: '2019-08-12T12:00:00'
+                    }, {
+                        title: 'Meeting',
+                        start: '2019-08-12T14:30:00'
+                    }, {
+                        title: 'Happy Hour',
+                        start: '2019-08-12T17:30:00'
+                    }, {
+                        title: 'Dinner',
+                        start: '2019-08-12T20:00:00'
+                    }, {
+                        title: 'Birthday Party',
+                        start: '2019-08-13T07:00:00'
+                    }, {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2019-08-28'
+                    }]
+                });
+            } else {
+                // No user is signed in.
+            }
+        });
+    </script>
+</body>
+
+</html>
