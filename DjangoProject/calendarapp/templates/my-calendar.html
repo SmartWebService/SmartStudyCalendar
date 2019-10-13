@@ -49,7 +49,7 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                defaultDate: '2019-08-12',
+                // defaultDate: '2019-08-12',
                 locale: initialLocaleCode,
                 navLinks: true, // can click day/week names to navigate views
                 selectable: true,
@@ -67,63 +67,8 @@
                     calendar.unselect()
                 },
                 editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: '2019-08-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2019-08-07',
-                        end: '2019-08-10'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-09T16:00:00'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-16T16:00:00'
-                    },
-                    {
-                        title: '팀플 모임',
-                        start: '2019-08-11',
-                        end: '2019-08-13'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T10:30:00',
-                        end: '2019-08-12T12:30:00'
-                    },
-                    {
-                        title: '점심약속',
-                        start: '2019-08-12T12:00:00'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2019-08-12T17:30:00'
-                    },
-                    {
-                        title: '저녁약속',
-                        start: '2019-08-12T20:00:00'
-                    },
-                    {
-                        title: '생파',
-                        start: '2019-08-13T07:00:00'
-                    },
-                    {
-                        title: '테스트',
-                        url: 'http://google.com/',
-                        start: '2019-08-28'
-                    }
-                ]
+                eventLimit: false, // allow "more" link when too many events
+                events: [ {{user_events_json|safe}} ]
             });
 
             calendar.render();
@@ -151,67 +96,12 @@
                 // },
 
                 defaultView: 'listWeek',
-                defaultDate: '2019-08-12',
+                // defaultDate: '2019-08-12',
                 locale: initialLocaleCode,
                 navLinks: true, // can click day/week names to navigate views
                 editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: [
-                {
-                        title: 'All Day Event',
-                        start: '2019-08-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2019-08-07',
-                        end: '2019-08-10'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-09T16:00:00'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-16T16:00:00'
-                    },
-                    {
-                        title: '팀플 모임',
-                        start: '2019-08-11',
-                        end: '2019-08-13'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T10:30:00',
-                        end: '2019-08-12T12:30:00'
-                    },
-                    {
-                        title: '점심약속',
-                        start: '2019-08-12T12:00:00'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2019-08-12T17:30:00'
-                    },
-                    {
-                        title: '저녁약속',
-                        start: '2019-08-12T20:00:00'
-                    },
-                    {
-                        title: '생파',
-                        start: '2019-08-13T07:00:00'
-                    },
-                    {
-                        title: '테스트',
-                        url: 'http://google.com/',
-                        start: '2019-08-28'
-                    }
-                ]
+                eventLimit: false, // allow "more" link when too many events
+                events: [ {{user_events_json|safe}} ]
             });
 
             calendar.render();

@@ -20,7 +20,7 @@ class Subject:
 
 
 def calc_time(time):
-    return time//12, time%12
+    return time//12, time%12*5
 
 
 def timetable2json(timetable):
