@@ -41,13 +41,15 @@ INSTALLED_APPS = [
     'everytime.apps.EverytimeConfig',
     'calendarapp.apps.CalendarappConfig',
     'accounts.apps.AccountsConfig',
+    'notebook.apps.NotebookConfig',
 
     #allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    'allauth.socialaccount.providers.google'
+    'allauth.socialaccount.providers.google',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +143,5 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = "/"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
