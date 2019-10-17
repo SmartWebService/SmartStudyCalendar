@@ -18,13 +18,17 @@ from django.urls import path, include
 import everytime.views
 import calendarapp.views
 import accounts.views
+import notebook.views
 
 urlpatterns = [
-    path('', calendarapp.views.my),
+    path('', calendarapp.views.intro),
+    path('mycalendar', calendarapp.views.my),
     path('admin/', admin.site.urls),
     path('connect-everytime', everytime.views.connect_everytime),
     path('connect-everytime/check', everytime.views.post),
     path('connect-everytime/how-to', everytime.views.howto),
     path('login', accounts.views.login, name='login'),
     path('accounts/', include('allauth.urls')),
+    path('summernote/', include('django_summernote.urls')),
+    path('post_create/', notebook.views.post_create, name="post_create"),
 ]

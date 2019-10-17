@@ -3,6 +3,7 @@
 <html lang="ko">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -49,7 +50,7 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                defaultDate: '2019-08-12',
+                // defaultDate: '2019-08-12',
                 locale: initialLocaleCode,
                 navLinks: true, // can click day/week names to navigate views
                 selectable: true,
@@ -67,66 +68,11 @@
                     calendar.unselect()
                 },
                 editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: '2019-08-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2019-08-07',
-                        end: '2019-08-10'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-09T16:00:00'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-16T16:00:00'
-                    },
-                    {
-                        title: '팀플 모임',
-                        start: '2019-08-11',
-                        end: '2019-08-13'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T10:30:00',
-                        end: '2019-08-12T12:30:00'
-                    },
-                    {
-                        title: '점심약속',
-                        start: '2019-08-12T12:00:00'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2019-08-12T17:30:00'
-                    },
-                    {
-                        title: '저녁약속',
-                        start: '2019-08-12T20:00:00'
-                    },
-                    {
-                        title: '생파',
-                        start: '2019-08-13T07:00:00'
-                    },
-                    {
-                        title: '테스트',
-                        url: 'http://google.com/',
-                        start: '2019-08-28'
-                    }
-                ]
+                eventLimit: false, // allow "more" link when too many events
+                events: [{{ user_events_json| safe}} ]
             });
 
-            calendar.render();
+        calendar.render();
 
 
         });
@@ -151,70 +97,15 @@
                 // },
 
                 defaultView: 'listWeek',
-                defaultDate: '2019-08-12',
+                // defaultDate: '2019-08-12',
                 locale: initialLocaleCode,
                 navLinks: true, // can click day/week names to navigate views
                 editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: [
-                {
-                        title: 'All Day Event',
-                        start: '2019-08-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2019-08-07',
-                        end: '2019-08-10'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-09T16:00:00'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2019-08-16T16:00:00'
-                    },
-                    {
-                        title: '팀플 모임',
-                        start: '2019-08-11',
-                        end: '2019-08-13'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T10:30:00',
-                        end: '2019-08-12T12:30:00'
-                    },
-                    {
-                        title: '점심약속',
-                        start: '2019-08-12T12:00:00'
-                    },
-                    {
-                        title: '회의',
-                        start: '2019-08-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2019-08-12T17:30:00'
-                    },
-                    {
-                        title: '저녁약속',
-                        start: '2019-08-12T20:00:00'
-                    },
-                    {
-                        title: '생파',
-                        start: '2019-08-13T07:00:00'
-                    },
-                    {
-                        title: '테스트',
-                        url: 'http://google.com/',
-                        start: '2019-08-28'
-                    }
-                ]
+                eventLimit: false, // allow "more" link when too many events
+                events: [{{ user_events_json| safe}} ]
             });
 
-            calendar.render();
+        calendar.render();
         });
 
     </script>
@@ -249,7 +140,9 @@
 </head>
 
 <body>
-
+        {% if not user.is_authenticated %}
+        <meta http-equiv="refresh" content="0; url=./" />
+        {% endif %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Smart Study Calendar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -259,16 +152,16 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <!-- <li class="nav-item active">
                     <a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="connect-everytime">에브리타임 시간표 연동</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Notice Feeds
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Action</a>
@@ -285,7 +178,9 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
-            <a href="login">로그인</a>
+            <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="" width="40" height="40">
+            <a style="font-size: 20pt;">&nbsp&nbsp{{user.last_name}}{{user.first_name}}&nbsp&nbsp
+            <a href="accounts/logout"><img src="https://image.flaticon.com/icons/svg/1427/1427087.svg" alt="" width="40" height="40"></a></a> 
         </div>
     </nav>
 
