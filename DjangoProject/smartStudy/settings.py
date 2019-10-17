@@ -22,6 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1p6(8r5+vu_zf5(0e748x(xgh&sru%epzoamp*8+-4gyy%fsfj'
 
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '1p6(8r5+vu_zf5(0e748x(xgh&sru%epzoamp*8+-4gyy%fsfj')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -48,7 +51,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
     'django_summernote',
 ]
 

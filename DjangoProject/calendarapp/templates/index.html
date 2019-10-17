@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE HTML>
 
 <html>
@@ -6,16 +7,19 @@
     <title>Intensify by TEMPLATED</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./assets/css/main2.css" />
+    <link rel="stylesheet" href="{% static './assets/css/main2.css' %}" />
 </head>
 
 <body>
+    {% if user.is_authenticated %}
+    <meta http-equiv="refresh" content="0; url=mycalendar" />
+    {% endif %}
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+    <script src="{% static 'assets/js/skel.min.js' %}"></script>
+    <script src="{% static 'assets/js/util.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
 
     <!-- Header -->
     <header id="header">
@@ -44,7 +48,7 @@
             <h1 style="color: #f6755e">로그인하여 시작하십시오</h1>
 
             <nav class="right" style="color:#FFFFFF">
-                <a href="login.html" class="button alt" style="background-color: #FFFFFF;">Log in</a>
+                <a href="login" class="button alt" style="background-color: #FFFFFF;">Log in</a>
             </nav>
         </div>
     </section>
@@ -55,7 +59,8 @@
             <div class="flex-item left">
                 <div>
                     <h3>Everytime</h3>
-                    <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 시간표를 연동해 보세요</p>
+                    <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        시간표를 연동해 보세요</p>
                 </div>
                 <div>
                     <h3>Facebook</h3>
@@ -95,7 +100,8 @@
             </ul>
         </div>
         <div class="copyright">
-            &copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+            &copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a
+                href="https://unsplash.com">Unsplash</a>.
         </div>
     </footer>
 

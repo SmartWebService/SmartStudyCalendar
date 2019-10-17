@@ -21,7 +21,8 @@ import accounts.views
 import notebook.views
 
 urlpatterns = [
-    path('', calendarapp.views.my),
+    path('', calendarapp.views.intro),
+    path('mycalendar', calendarapp.views.my),
     path('admin/', admin.site.urls),
     path('connect-everytime', everytime.views.connect_everytime),
     path('connect-everytime/check', everytime.views.post),
