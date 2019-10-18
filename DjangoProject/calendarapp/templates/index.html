@@ -12,8 +12,7 @@
 
 <body>
     {% if user.is_authenticated %}
-    <meta http-equiv="refresh" content="0; url=mycalendar" />
-    {% endif %}
+    <meta http-equiv="refresh" content="0; url=mycalendar" /> {% endif %}
     <!-- Scripts -->
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
@@ -24,23 +23,14 @@
     <!-- Header -->
     <header id="header">
         <nav class="left">
-            <a href="#menu"><span>Menu</span></a>
+
         </nav>
-        <a href="index.html" class="logo">Smart Study Web Calendar</a>
+        <a href='' class="logo">Smart Study Web Calendar</a>
 
     </header>
 
     <!-- Menu -->
-    <nav id="menu">
-        <ul class="links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="generic.html">Generic</a></li>
-            <li><a href="elements.html">Elements</a></li>
-        </ul>
-        <ul class="actions vertical">
-            <li><a href="#" class="button fit">Login</a></li>
-        </ul>
-    </nav>
+
 
     <!-- Banner -->
     <section id="banner">
@@ -59,8 +49,7 @@
             <div class="flex-item left">
                 <div>
                     <h3>Everytime</h3>
-                    <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        시간표를 연동해 보세요</p>
+                    <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 시간표를 연동해 보세요</p>
                 </div>
                 <div>
                     <h3>Facebook</h3>
@@ -100,8 +89,7 @@
             </ul>
         </div>
         <div class="copyright">
-            &copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a
-                href="https://unsplash.com">Unsplash</a>.
+            &copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
         </div>
     </footer>
 
