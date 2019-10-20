@@ -51,7 +51,7 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 // defaultDate: '2019-08-12',
-                defaultView: 'timeGridWeek',
+                {{ df |safe}}
                 locale: initialLocaleCode,
                 navLinks: true, // can click day/week names to navigate views
                 selectable: true,
@@ -145,7 +145,7 @@
         <meta http-equiv="refresh" content="0; url=./" />
         {% endif %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Smart Study Calendar</a>
+        <a class="navbar-brand" href="/mycalendar">Smart Study Calendar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -157,7 +157,7 @@
                     <a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="connect-everytime">에브리타임 시간표 연동</a>
+                    <a class="nav-link" href="/connect-everytime">에브리타임 시간표 연동</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -165,10 +165,10 @@
                         Notice Feeds
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="/feeds/kmu">국민대학교</a>
+                        <a class="dropdown-item" href="/feeds/kmusw">국민대학교 소프트웨어융합대학</a>
+                        <!-- <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a> -->
                     </div>
                 </li>
                 <li class="nav-item">

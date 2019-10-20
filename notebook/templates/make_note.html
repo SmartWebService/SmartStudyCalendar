@@ -1,0 +1,28 @@
+
+<h1>{{title}}</h1>
+{{note_content|safe}}
+<form action="" method="POST">
+    {%csrf_token%}
+  <table>
+    <tr><th></td></tr>
+<tr><th></th><td><textarea name="content" cols="40" rows="10" id="id_content" hidden="true">
+</textarea><script>
+var settings_id_content = {"width": 720, "height": 480, "lang": "ko-KR", "toolbar": [["style", ["style"]], ["font", ["bold", "italic", "underline", "superscript", "subscript", "strikethrough", "clear"]], ["fontname", ["fontname"]], ["fontsize", ["fontsize"]], ["color", ["color"]], ["para", ["ul", "ol", "paragraph"]], ["height", ["height"]], ["table", ["table"]], ["insert", ["link", "picture", "video", "hr"]], ["view", ["fullscreen", "codeview"]], ["help", ["help"]]], "url": {"language": "/static/summernote/lang/summernote-ko-KR.min.js", "upload_attachment": "/summernote/upload_attachment/"}};
+</script>
+<style>
+iframe.note-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw!important;
+  height: 100vh!important;
+  z-index: 4000;
+}
+</style>
+<div  cols="40" rows="10" width="720" height="480">
+  <iframe id="id_content_iframe" src="/summernote/editor/id_content/" frameborder="0" width="720" height="480"></iframe>
+</div>
+</td></tr>
+  </table> 
+  <input type="submit" value="저장">
+</form>

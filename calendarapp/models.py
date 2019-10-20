@@ -11,9 +11,10 @@ class Event(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     is_from_timetable = models.BooleanField(default=False)
+    feed = models.IntegerField(default='0')
 
     def toJson(self):
-        result = """{id: """ + str(self.id) + """, title: '""" + self.title + """',start: '""" + str(self.start.isoformat())[:19] + """',end: '"""+ str(self.end.isoformat())[:19] + """'},"""
+        result = """{id: """ + str(self.id) + """, title: '""" + self.title + """',start: '""" + str(self.start.isoformat())[:19] + """',end: '"""+ str(self.end.isoformat())[:19] + """',url: '/note?e_id="""+ str(self.pk) + """'},"""
 
         return result
     
