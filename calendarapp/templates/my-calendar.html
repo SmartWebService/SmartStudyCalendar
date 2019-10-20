@@ -3,7 +3,7 @@
 <html lang="ko">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,178 +11,172 @@
 
     <link href="https://fonts.googleapis.com/css?family=Mansalva|Nanum+Gothic&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                    crossorigin="anonymous"></script>
 
 
-    <link href="{% static 'packages/core/main.css' %}" rel='stylesheet' />
-    <link href="{% static 'packages/daygrid/main.css' %}" rel='stylesheet' />
-    <link href="{% static 'packages/timegrid/main.css' %}" rel='stylesheet' />
-    <link href="{% static 'packages/list/main.css' %}" rel='stylesheet' />
-    <script src="{% static 'packages/core/main.js' %}"></script>
-    <script src="{% static 'packages/core/locales-all.js' %}"></script>
-    <script src="{% static 'packages/interaction/main.js' %}"></script>
-    <script src="{% static 'packages/daygrid/main.js' %}"></script>
-    <script src="{% static 'packages/timegrid/main.js' %}"></script>
-    <script src="{% static 'packages/list/main.js' %}"></script>
+                    <link href="{% static 'packages/core/main.css' %}" rel='stylesheet' />
+                    <link href="{% static 'packages/daygrid/main.css' %}" rel='stylesheet' />
+                    <link href="{% static 'packages/timegrid/main.css' %}" rel='stylesheet' />
+                    <link href="{% static 'packages/list/main.css' %}" rel='stylesheet' />
+                    <script src="{% static 'packages/core/main.js' %}"></script>
+                    <script src="{% static 'packages/core/locales-all.js' %}"></script>
+                    <script src="{% static 'packages/interaction/main.js' %}"></script>
+                    <script src="{% static 'packages/daygrid/main.js' %}"></script>
+                    <script src="{% static 'packages/timegrid/main.js' %}"></script>
+                    <script src="{% static 'packages/list/main.js' %}"></script>
 
-    <script>
+                    <script>
+                        var initialLocaleCode = 'ko';
+                        document.addEventListener('DOMContentLoaded', function () {
 
-        var initialLocaleCode = 'ko';
-        document.addEventListener('DOMContentLoaded', function () {
+                            var calendarEl = document.getElementById('calendar');
 
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['interaction', 'dayGrid', 'timeGrid'],
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                // defaultDate: '2019-08-12',
-                defaultView: 'timeGridWeek',
-                locale: initialLocaleCode,
-                navLinks: true, // can click day/week names to navigate views
-                selectable: true,
-                selectMirror: true,
-                select: function (arg) {
-                    var title = prompt('Event Title:');
-                    if (title) {
-                        calendar.addEvent({
-                            title: title,
-                            start: arg.start,
-                            end: arg.end,
-                            allDay: arg.allDay
-                        })
-                    }
-                    calendar.unselect()
-                },
-                editable: true,
-                eventLimit: false, // allow "more" link when too many events
-                events: [{{ user_events_json| safe}} ]
+                            var calendar = new FullCalendar.Calendar(calendarEl, {
+                                plugins: ['interaction', 'dayGrid', 'timeGrid'],
+                                header: {
+                                    left: 'prev,next today',
+                                    center: 'title',
+                                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                                },
+                                // defaultDate: '2019-08-12',
+                                defaultView: 'timeGridWeek',
+                                locale: initialLocaleCode,
+                                navLinks: true, // can click day/week names to navigate views
+                                selectable: true,
+                                selectMirror: true,
+                                select: function (arg) {
+                                    var title = prompt('Event Title:');
+                                    if (title) {
+                                        calendar.addEvent({
+                                            title: title,
+                                            start: arg.start,
+                                            end: arg.end,
+                                            allDay: arg.allDay
+                                        })
+                                    }
+                                    calendar.unselect()
+                                },
+                                editable: true,
+                                eventLimit: false, // allow "more" link when too many events
+                                events: [{{ user_events_json| safe }}]
             });
 
-        calendar.render();
+                        calendar.render();
 
 
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('side');
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var calendarEl = document.getElementById('side');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['list'],
+                            var calendar = new FullCalendar.Calendar(calendarEl, {
+                                plugins: ['list'],
 
-                // header: {
-                //   left: 'prev,next today',
-                //   center: 'title',
-                //   right: 'listDay,listWeek,dayGridMonth'
-                // },
+                                // header: {
+                                //   left: 'prev,next today',
+                                //   center: 'title',
+                                //   right: 'listDay,listWeek,dayGridMonth'
+                                // },
 
-                // customize the button names,
-                // otherwise they'd all just say "list"
-                // views: {
-                //   listDay: { buttonText: 'list day' },
-                //   listWeek: { buttonText: 'list week' }
-                // },
+                                // customize the button names,
+                                // otherwise they'd all just say "list"
+                                // views: {
+                                //   listDay: { buttonText: 'list day' },
+                                //   listWeek: { buttonText: 'list week' }
+                                // },
 
-                defaultView: 'listWeek',
-                // defaultDate: '2019-08-12',
-                locale: initialLocaleCode,
-                navLinks: true, // can click day/week names to navigate views
-                editable: true,
-                eventLimit: false, // allow "more" link when too many events
-                events: [{{ user_events_json| safe}} ]
+                                defaultView: 'listWeek',
+                                // defaultDate: '2019-08-12',
+                                locale: initialLocaleCode,
+                                navLinks: true, // can click day/week names to navigate views
+                                editable: true,
+                                eventLimit: false, // allow "more" link when too many events
+                                events: [{{ user_events_json| safe }} ]
             });
 
-        calendar.render();
+                        calendar.render();
         });
+                    </script>
 
-    </script>
-
-    <style>
-        /* body {
+                    <style>
+                        /* body {
             margin: 40px 10px;
             padding: 0;
             font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
             font-size: 14px;
         } */
-
-        body {
-            font-family: 'Mansalva', cursive;
-            font-family: 'Nanum Gothic', sans-serif;
-        }
-
-        nav {
-            font-family: 'Mansalva', cursive;
-        }
-
-        .navbar-brand {
-            font-size: 25pt;
-        }
-
-        #calendar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-    </style>
+                        
+                        body {
+                            font-family: 'Mansalva', cursive;
+                            font-family: 'Nanum Gothic', sans-serif;
+                        }
+                        
+                        nav {
+                            font-family: 'Mansalva', cursive;
+                        }
+                        
+                        .navbar-brand {
+                            font-size: 25pt;
+                        }
+                        
+                        #calendar {
+                            max-width: 900px;
+                            margin: 0 auto;
+                        }
+                    </style>
 
 </head>
 
 <body>
-        {% if not user.is_authenticated %}
-        <meta http-equiv="refresh" content="0; url=./" />
-        {% endif %}
+    {% if not user.is_authenticated %}
+    <meta http-equiv="refresh" content="0; url=./" /> {% endif %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Smart Study Calendar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <!-- <li class="nav-item active">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!-- <li class="nav-item active">
                     <a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a>
                 </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="connect-everytime">에브리타임 시간표 연동</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Notice Feeds
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="connect-everytime">에브리타임 시간표 연동</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Notice Feeds
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
-            <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="" width="40" height="40">
-            <a style="font-size: 20pt;">&nbsp&nbsp{{user.last_name}}{{user.first_name}}&nbsp&nbsp
-            <a href="accounts/logout"><img src="https://image.flaticon.com/icons/svg/1427/1427087.svg" alt="" width="40" height="40"></a></a> 
-        </div>
+                <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="" width="40" height="40">
+                <a style="font-size: 20pt;">&nbsp&nbsp{{user.last_name}}{{user.first_name}}&nbsp&nbsp
+            <a href="accounts/logout"><img src="https://image.flaticon.com/icons/svg/1427/1427087.svg" alt="" width="40" height="40"></a></a>
+            </div>
     </nav>
 
     <br><br>
@@ -190,6 +184,7 @@
         <div class="row">
             <div id='calendar' class="col-7"></div>
             <div id='side' class="col-5"></div>
+            <a href="inputinfo">일정추가</a>
         </div>
     </div>
 
