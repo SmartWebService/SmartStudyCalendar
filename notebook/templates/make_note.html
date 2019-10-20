@@ -1,28 +1,267 @@
+<!DOCTYPE html>
+<!-- https://codepen.io/colorlib/pen/rxddKy -->
+<html lang="ko">
 
-<h1>{{title}}</h1>
-{{note_content|safe}}
-<form action="" method="POST">
-    {%csrf_token%}
-  <table>
-    <tr><th></td></tr>
-<tr><th></th><td><textarea name="content" cols="40" rows="10" id="id_content" hidden="true">
-</textarea><script>
-var settings_id_content = {"width": 720, "height": 480, "lang": "ko-KR", "toolbar": [["style", ["style"]], ["font", ["bold", "italic", "underline", "superscript", "subscript", "strikethrough", "clear"]], ["fontname", ["fontname"]], ["fontsize", ["fontsize"]], ["color", ["color"]], ["para", ["ul", "ol", "paragraph"]], ["height", ["height"]], ["table", ["table"]], ["insert", ["link", "picture", "video", "hr"]], ["view", ["fullscreen", "codeview"]], ["help", ["help"]]], "url": {"language": "/static/summernote/lang/summernote-ko-KR.min.js", "upload_attachment": "/summernote/upload_attachment/"}};
-</script>
-<style>
-iframe.note-fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw!important;
-  height: 100vh!important;
-  z-index: 4000;
-}
-</style>
-<div  cols="40" rows="10" width="720" height="480">
-  <iframe id="id_content_iframe" src="/summernote/editor/id_content/" frameborder="0" width="720" height="480"></iframe>
-</div>
-</td></tr>
-  </table> 
-  <input type="submit" value="저장">
-</form>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ title }}</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Mansalva|Nanum+Gothic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script>
+    $('.message a').click(function () {
+      $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    });</script>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+    .login-page {
+      /* width: 360px; */
+      padding: 8% 0 0;
+      margin: auto;
+    }
+
+    .form {
+      position: relative;
+      z-index: 1;
+      background: #FFFFFF;
+      max-width: 900px;
+      margin: 0 auto 100px;
+      padding: 45px;
+      text-align: center;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+    .form input {
+      font-family: "Roboto", sans-serif;
+      outline: 0;
+      background: #f2f2f2;
+      width: 100%;
+      border: 0;
+      margin: 0 0 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .form button {
+      font-family: "Roboto", sans-serif;
+      text-transform: uppercase;
+      outline: 0;
+      background: #4CAF50;
+      width: 100%;
+      border: 0;
+      padding: 15px;
+      color: #FFFFFF;
+      font-size: 14px;
+      -webkit-transition: all 0.3 ease;
+      transition: all 0.3 ease;
+      cursor: pointer;
+    }
+
+    .form button:hover,
+    .form button:active,
+    .form button:focus {
+      background: #43A047;
+    }
+
+    .form .message {
+      margin: 15px 0 0;
+      color: #b3b3b3;
+      font-size: 12px;
+    }
+
+    .form .message a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .form .register-form {
+      display: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .container:before,
+    .container:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .container .info {
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .container .info h1 {
+      margin: 0 0 15px;
+      padding: 0;
+      font-size: 36px;
+      font-weight: 300;
+      color: #1a1a1a;
+    }
+
+    .container .info span {
+      color: #4d4d4d;
+      font-size: 12px;
+    }
+
+    .container .info span a {
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .container .info span .fa {
+      color: #EF3B3A;
+    }
+
+    body {
+      background: #76b852;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+      background: -moz-linear-gradient(right, #76b852, #8DC26F);
+      background: -o-linear-gradient(right, #76b852, #8DC26F);
+      background: linear-gradient(to left, #76b852, #8DC26F);
+      font-family: "Roboto", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    #logo {
+      text-align: center;
+    }
+
+    #user-input {
+      text-align: center;
+    }
+
+    nav {
+      font-family: 'Mansalva', cursive;
+    }
+
+    .navbar-brand {
+      font-size: 25pt;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/mycalendar">Smart Study Calendar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a>
+                </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/connect-everytime">에브리타임 시간표 연동</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Notice Feeds
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/feeds/kmu">국민대학교</a>
+            <a class="dropdown-item" href="/feeds/kmusw">국민대학교 소프트웨어융합대학</a>
+            <!-- <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a> -->
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+      <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="" width="40" height="40">
+      <a style="font-size: 20pt;">&nbsp&nbsp{{user.last_name}}{{user.first_name}}&nbsp&nbsp
+        <a href="accounts/logout"><img src="https://image.flaticon.com/icons/svg/1427/1427087.svg" alt="" width="40"
+            height="40"></a></a>
+    </div>
+  </nav>
+
+
+  <div class="login-page">
+
+    <div class="form">
+
+
+      <h1>{{title}}</h1>
+      {{note_content|safe}}
+      <form action="" method="POST">
+        {%csrf_token%}
+        <table>
+          <tr>
+            <th>
+              </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><textarea name="content" cols="40" rows="10" id="id_content" hidden="true">
+</textarea>
+              <script>
+                var settings_id_content = { "width": 720, "height": 480, "lang": "ko-KR", "toolbar": [["style", ["style"]], ["font", ["bold", "italic", "underline", "superscript", "subscript", "strikethrough", "clear"]], ["fontname", ["fontname"]], ["fontsize", ["fontsize"]], ["color", ["color"]], ["para", ["ul", "ol", "paragraph"]], ["height", ["height"]], ["table", ["table"]], ["insert", ["link", "picture", "video", "hr"]], ["view", ["fullscreen", "codeview"]], ["help", ["help"]]], "url": { "language": "/static/summernote/lang/summernote-ko-KR.min.js", "upload_attachment": "/summernote/upload_attachment/" } };
+              </script>
+              <style>
+                iframe.note-fullscreen {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100vw !important;
+                  height: 100vh !important;
+                  z-index: 4000;
+                }
+              </style>
+              <div cols="40" rows="10" width="720" height="480">
+                <iframe id="id_content_iframe" src="/summernote/editor/id_content/" frameborder="0" width="720"
+                  height="480"></iframe>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <input type="submit" value="저장">
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>
