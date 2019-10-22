@@ -39,7 +39,7 @@ urlpatterns = [
 
     path('inputinfo', calendarapp.views.input),
     path('connect-input', calendarapp.views.input),
-    path('connect-input/check', calendarapp.views.post)
+    path('connect-input/check', calendarapp.views.post),
 
     path('error', calendarapp.views.error),
 
