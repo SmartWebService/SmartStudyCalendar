@@ -161,35 +161,19 @@
 </head>
 
 <body>
-    <div class="login-page">
+    <div class="login-page" >
 
         <div class="form">
+            <form action="/connect-input/check" method="POST">
+                {%csrf_token%}
+                {{form.as_p}}
+                일정 : <input type="text" name="name"><br>
+                장소 : <input type="text" name="place"><br>
+                 StartDate: <input type="datetime-local" name="Sday"><br>
+                  EndDate: <input type="datetime-local" name="Eday"><br>
 
-            {% if not user.is_authenticated %}
-
-            <h2>로그인</h2>
-
-            <a class="btn btn-social-icon  btn-twitter ">
-                <span class="fa fa-twitter"> </ span>
-            </a>
-
-
-            <a href="{% provider_login_url 'facebook'%}" class="btn btn-block btn-social btn-facebook">
-                <span class="fa fa-facebook"></span> Facebook으로 로그인
-            </a>
-            <a href="{% provider_login_url 'google'%}" class="btn btn-block btn-social btn-google">
-                <span class="fa fa-google"></span> Google계정으로 로그인
-            </a>
-            <a href="{% provider_login_url 'kakao' method='oauth2' %}" class="btn btn-block btn-social btn-kakao">
-                <span class="fa fa-kakao"></span> 카카오계정으로 로그인
-            </a>
-
-            {% else %}
-
-            <h2>이미 로그인되어있습니다.</h2>
-
-            {{user.last_name}} {{user.first_name}}님 {% endif %}
-
+                  <button>추가</button>
+            </form>
         </div>
     </div>
 

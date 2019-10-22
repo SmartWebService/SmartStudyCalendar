@@ -28,7 +28,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '1p6(8r5+vu_zf5(0e748x(xgh&sru%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ['www.smart-study-calendar.com', 'smart-study-calendar.com', 'smart-study-calendar.herokuapp.com', '127.0.0.1', '127.0.0.1:8000']
+
 
 
 # Application definition

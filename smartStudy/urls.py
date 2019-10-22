@@ -22,10 +22,12 @@ import notebook.views
 
 urlpatterns = [
     path('', calendarapp.views.intro),
-    path('mycalendar', calendarapp.views.my),
+
+    path('mycalendar', calendarapp.views.my, name='mycalendar'),
     path('note', notebook.views.make_note),
     path('feeds/kmu', calendarapp.views.kmu),
     path('feeds/kmusw', calendarapp.views.kmusw),
+
     path('admin/', admin.site.urls),
     path('connect-everytime', everytime.views.connect_everytime),
     path('connect-everytime/check', everytime.views.post),
@@ -34,5 +36,11 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('post_create/', notebook.views.post_create, name="post_create"),
+
+    path('inputinfo', calendarapp.views.input),
+    path('connect-input', calendarapp.views.input),
+    path('connect-input/check', calendarapp.views.post)
+
     path('error', calendarapp.views.error),
+
 ]
